@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "lib/sugar.rb",
      "lib/sugar/actionpack.rb",
      "lib/sugar/activerecord.rb",
+     "sugar.gemspec",
      "test/sugar_test.rb",
      "test/test_helper.rb"
   ]
