@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "init.rb",
      "lib/sugar.rb",
      "lib/sugar/actionpack.rb",
      "lib/sugar/activerecord.rb",
