@@ -56,5 +56,28 @@ module Sugar
       "<form method=\"#{form_method}\" action=\"#{escape_once url}\" class=\"button-to\"><div class=\"b_input b_input-imagebutton\">" +
         method_tag + tag("input", html_options) + request_token_tag + "</div></form>"
     end
+
+    def link_to_edit(something)
+      link_to(image_tag('icons/edit.png',
+                        :alt => t('.edit'),
+                        :title => t('.edit')),
+              edit_polymorphic_path(something),
+              :class => 'ajax edit')
+    end
+
+    def button_to_delete(something)
+      image_to('icons/delete.png',
+               t('.delete'),
+               polymorphic_path(something),
+               :class => 'ajax delete')
+    end
+
+    def link_to_delete(something)
+      link_to(image_tag('icons/delete.png',
+                        :alt => t('.delete'),
+                        :title => t('.delete')),
+              polymorphic_path(something),
+              :class => 'ajax delete')
+    end
   end
 end
