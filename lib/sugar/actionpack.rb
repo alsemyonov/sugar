@@ -1,14 +1,24 @@
 module Sugar
   module Actionpack
+    VIEW_PLACEHOLDERS = {
+      'create' => 'new',
+      'update' => 'edit'
+    }
+
+    def view_name
+      action_name = controller.action_name
+      VIEW_PLACEHOLDERS[action_name] || action_name
+    end
+
     # Return page title for use in layout
     def page_title(title = nil)
-      @title ||= title || t("#{controller_name}.#{controller.action_name}.title")
+      @title ||= title || t("#{controller_name}.#{view_name}.title")
       @title
     end
 
     # Put submit with proper text
     def submit(form, title = nil)
-      title ||= t("#{controller.controller_name}.#{controller.action_name}.submit")
+      title ||= t("#{controller.controller_name}.#{view_name}.submit")
       form.submit(title)
     end
 
