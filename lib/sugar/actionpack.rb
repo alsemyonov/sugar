@@ -79,7 +79,9 @@ module Sugar
       image_to('icons/delete.png',
                t('.delete'),
                polymorphic_path(something),
-               :class => 'ajax delete')
+               :class => 'ajax delete',
+               :method => :delete,
+               :confirm => t('sure'))
     end
 
     def link_to_delete(something)
