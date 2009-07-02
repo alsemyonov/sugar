@@ -1,5 +1,5 @@
 module Sugar
-  module Actionpack
+  module Actionview
     VIEW_PLACEHOLDERS = {
       'create' => 'new',
       'update' => 'edit'
@@ -93,3 +93,4 @@ module Sugar
     end
   end
 end
+
