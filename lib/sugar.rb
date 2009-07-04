@@ -1,7 +1,7 @@
 module Sugar
 end
 
-require 'sugar/actionpack'
+require 'sugar/actionview'
 require 'sugar/activerecord'
 
 if defined? Rails
