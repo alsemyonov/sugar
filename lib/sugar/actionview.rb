@@ -76,6 +76,14 @@ module Sugar
     end
 
     def button_to_delete(something)
+      button_to(t('.delete'),
+                polymorphic_path(something),
+                :class => 'ajax delete',
+                :method => :delete,
+                :confirm => t('sure'))
+    end
+
+    def image_button_to_delete(something)
       image_to('icons/delete.png',
                t('.delete'),
                polymorphic_path(something),
