@@ -78,7 +78,7 @@ module Sugar
     def button_to_delete(something)
       button_to(t('.delete'),
                 polymorphic_path(something),
-                :class => 'ajax delete',
+                :class => 'delete',
                 :method => :delete,
                 :confirm => t('sure'))
     end
@@ -87,7 +87,7 @@ module Sugar
       image_to('icons/delete.png',
                t('.delete'),
                polymorphic_path(something),
-               :class => 'ajax delete',
+               :class => 'delete',
                :method => :delete,
                :confirm => t('sure'))
     end
@@ -100,5 +100,22 @@ module Sugar
               :class => 'ajax delete')
     end
   end
+
+  def default_new_link_options
+    @default_new_link_options ||= {
+      :image => 'icons/add.png',
+      :alt => t('.add'),
+      :title => t('.add')
+    }
+  end
+
+  def link_to_new(options = {})
+    options = default_new_link_options.merge(options || {})
+    url = options.has_key?(:url) ? options.delete(:url) : {:action => 'new'}
+    link_to(image_tag(options.delete(:image),
+                      options),
+            url)
+  end
+
 end
 
