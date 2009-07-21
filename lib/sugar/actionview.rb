@@ -99,22 +99,22 @@ module Sugar
               polymorphic_path(something),
               :class => 'ajax delete')
     end
-  end
 
-  def default_new_link_options
-    @default_new_link_options ||= {
-      :image => 'icons/add.png',
-      :alt => t('.add'),
-      :title => t('.add')
-    }
-  end
+    def default_new_link_options
+      @default_new_link_options ||= {
+        :image => 'icons/add.png',
+        :alt => t('.add'),
+        :title => t('.add')
+      }
+    end
 
-  def link_to_new(options = {})
-    options = default_new_link_options.merge(options || {})
-    url = options.has_key?(:url) ? options.delete(:url) : {:action => 'new'}
-    link_to(image_tag(options.delete(:image),
-                      options),
-            url)
+    def link_to_new(options = {})
+      options = default_new_link_options.merge(options || {})
+      url = options.has_key?(:url) ? options.delete(:url) : {:action => 'new'}
+      link_to(image_tag(options.delete(:image),
+                        options),
+              url)
+    end
   end
 
 end
