@@ -12,8 +12,11 @@ module Sugar
 
     # Return page title for use in layout
     def page_title(title = nil)
-      @title ||= title || t("#{controller_name}.#{view_name}.title")
-      @title
+      @page_title = if title
+                 title
+               else
+                 @page_title || t("#{controller_name}.@{view_name}.title")
+               end
     end
 
     # Put submit with proper text
