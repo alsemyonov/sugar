@@ -118,6 +118,18 @@ module Sugar
                         options),
               url)
     end
+
+    def period_field(form, field)
+      content_tag :div, :class => 'b_input b_input-period' do
+        returning '' do |content|
+          content << form.label(:"#{field}_min")
+          content << form.text_field(:"#{field}_min")
+          content << form.label(:"#{field}_max", '—', :class => 'period')
+          content << form.text_field(:"#{field}_max")
+        end
+      end
+    end
+
   end
 
 end
