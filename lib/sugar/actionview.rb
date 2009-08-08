@@ -78,8 +78,9 @@ module Sugar
               :class => 'ajax edit')
     end
 
-    def button_to_delete(something)
-      button_to(t('.delete'),
+    def button_to_delete(something, title = nil)
+      title ||= t('.delete')
+      button_to(title,
                 polymorphic_path(something),
                 :class => 'delete',
                 :method => :delete,
