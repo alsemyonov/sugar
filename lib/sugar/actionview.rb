@@ -10,18 +10,32 @@ module Sugar
       VIEW_PLACEHOLDERS[action_name] || action_name
     end
 
+    def default_page_title
+      case action_name
+      when 'index'
+        controller_name.camelize
+      when 'new', 'create'
+        t("#{t('new')} #{controller_name.classify.human_name}")
+      when 'edit', 'update'
+        t("#{t('editing')} #{controller_name.classify.human_name}")
+      else
+        t("#{controller_name}.#{view_name}.title")
+      end
+    end
+
     # Return page title for use in layout
     def page_title(title = nil)
       @page_title = if title
                  title
                else
-                 @page_title || t("#{controller_name}.@{view_name}.title")
+                 @page_title || default_page_title
                end
     end
 
     # Put submit with proper text
     def submit(form, title = nil)
-      title ||= t("#{controller.controller_name}.#{view_name}.submit")
+      title ||= t("#{controller.controller_name}.#{view_name}.submit",
+                  :default => form.object.new_record? ? "#{t('add')} #{form.object.class.human_name}" : "#{t('save')} #{form.object.class.human_name}")
       form.submit(title)
     end
 
