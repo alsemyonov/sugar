@@ -79,12 +79,12 @@ module Sugar
     end
 
     def button_to_delete(something, title = nil)
-      title ||= t('.delete')
+      title ||= t('.delete', :default => "Delete #{something.class.human_name}")
       button_to(title,
                 polymorphic_path(something),
                 :class => 'delete',
                 :method => :delete,
-                :confirm => t('sure'))
+                :confirm => t('sure', :default => 'Are you sure?'))
     end
 
     def image_button_to_delete(something)
