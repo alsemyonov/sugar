@@ -31,7 +31,7 @@ module Sugar
         menu.each do |item|
           path = "/#{item}"
           uri = request.request_uri
-          title = t("#{item}.index.title")
+          title = t("#{item}.index.title", :default => item.to_s.camelize)
           result << content_tag(:li, :class => uri.starts_with?(path) ? 'selected' : nil) do
             link_to_unless_current(title, path) {
               content_tag(:strong, title)
