@@ -80,7 +80,7 @@ module Sugar
 
       html_options.merge!("type" => "image", "src" => image_path(src), :alt => name, :title => name)
 
-      "<form method=\"#{form_method}\" action=\"#{escape_once url}\" class=\"button-to\"><div class=\"b_input b_input-imagebutton\">" +
+      "<form method=\"#{form_method}\" action=\"#{escape_once url}\" class=\"button-to action\"><div class=\"b_input b_input-imagebutton\">" +
         method_tag + tag("input", html_options) + request_token_tag + "</div></form>"
     end
 
@@ -89,14 +89,14 @@ module Sugar
                         :alt => t('.edit'),
                         :title => t('.edit')),
               edit_polymorphic_path(something),
-              :class => 'ajax edit')
+              :class => 'ajax edit action')
     end
 
     def button_to_delete(something, title = nil)
       title ||= t('.delete', :default => "Delete #{something.class.human_name}")
       button_to(title,
                 polymorphic_path(something),
-                :class => 'delete',
+                :class => 'delete action',
                 :method => :delete,
                 :confirm => t('sure', :default => 'Are you sure?'))
     end
@@ -105,7 +105,7 @@ module Sugar
       image_to('icons/delete.png',
                t('.delete'),
                polymorphic_path(something),
-               :class => 'delete',
+               :class => 'delete action',
                :method => :delete,
                :confirm => t('sure'))
     end
@@ -115,7 +115,7 @@ module Sugar
                         :alt => t('.delete'),
                         :title => t('.delete')),
               polymorphic_path(something),
-              :class => 'ajax delete')
+              :class => 'ajax action delete')
     end
 
     def default_new_link_options
@@ -131,7 +131,7 @@ module Sugar
       url = options.has_key?(:url) ? options.delete(:url) : {:action => 'new'}
       link_to(image_tag(options.delete(:image),
                         options),
-              url)
+              url, :class => 'action')
     end
 
     def period_field(form, field)
