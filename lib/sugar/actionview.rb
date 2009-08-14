@@ -15,9 +15,9 @@ module Sugar
       when 'index'
         controller_name.camelize
       when 'new', 'create'
-        t("#{t('new')} #{controller_name.classify.constantize.human_name}")
+        t("#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}")
       when 'edit', 'update'
-        t("#{t('editing')} #{controller_name.classify.constantize.human_name}")
+        t("#{t('editing', :default => 'Editing')} #{controller_name.classify.constantize.human_name}")
       else
         t("#{controller_name}.#{view_name}.title")
       end
@@ -28,7 +28,7 @@ module Sugar
       @page_title = if title
                  title
                else
-                 @page_title || default_page_title
+                 @page_title || t("#{controller_name}.#{view_name}.title", :default => default_page_title)
                end
     end
 
