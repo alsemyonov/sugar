@@ -15,9 +15,9 @@ module Sugar
       when 'index'
         controller_name.camelize
       when 'new', 'create'
-        t("#{t('new')} #{controller_name.classify.human_name}")
+        t("#{t('new')} #{controller_name.classify.constantize.human_name}")
       when 'edit', 'update'
-        t("#{t('editing')} #{controller_name.classify.human_name}")
+        t("#{t('editing')} #{controller_name.classify.constantize.human_name}")
       else
         t("#{controller_name}.#{view_name}.title")
       end
