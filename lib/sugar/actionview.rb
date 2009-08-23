@@ -93,7 +93,8 @@ module Sugar
     end
 
     def button_to_delete(something, title = nil)
-      title ||= t('.delete', :default => "Delete #{something.class.human_name}")
+      title ||= t('.delete',
+                  :default => "Delete #{(something.is_a?(Array) ? something.last : something).class.human_name}")
       button_to(title,
                 polymorphic_path(something),
                 :class => 'delete action',
