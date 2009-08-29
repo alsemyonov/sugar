@@ -35,7 +35,7 @@ module Sugar
     # Put submit with proper text
     def submit(form, title = nil)
       title ||= t("#{controller.controller_name}.#{view_name}.submit",
-                  :default => form.object.new_record? ? "#{t('add')} #{form.object.class.human_name}" : "#{t('save')} #{form.object.class.human_name}")
+                  :default => form.object.new_record? ? "#{t('add', :default => 'Add')} #{form.object.class.human_name}" : "#{t('save', :default => 'Save')} #{form.object.class.human_name}")
       form.submit(title)
     end
 
