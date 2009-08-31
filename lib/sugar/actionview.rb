@@ -11,16 +11,17 @@ module Sugar
     end
 
     def default_page_title
-      case action_name
-      when 'index'
-        controller_name.camelize
-      when 'new', 'create'
-        t("#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}")
-      when 'edit', 'update'
-        t("#{t('editing', :default => 'Editing')} #{controller_name.classify.constantize.human_name}")
-      else
-        t("#{controller_name}.#{view_name}.title")
-      end
+      text = case action_name
+             when 'index'
+               controller_name.camelize
+             when 'new', 'create'
+               t("#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}")
+             when 'edit', 'update'
+               t("#{t('editing', :default => 'Editing')} #{controller_name.classify.constantize.human_name}")
+             else
+               t("#{controller_name}.#{view_name}.title")
+             end
+      %(<span class="trasnlation_missing">#{text}</span>)
     end
 
     # Return page title for use in layout
@@ -30,6 +31,11 @@ module Sugar
                else
                  @page_title || t("#{controller_name}.#{view_name}.title", :default => default_page_title)
                end
+    end
+
+    def html_page_title(default = false, separator = ' | ')
+      default ||= t('application.title')
+      [page_title, default].compat.join(separator)
     end
 
     # Put submit with proper text
@@ -94,7 +100,7 @@ module Sugar
 
     def button_to_delete(something, title = nil)
       title ||= t('.delete',
-                  :default => "Delete #{(something.is_a?(Array) ? something.last : something).class.human_name}")
+                  :default => %(Delete #{(something.is_a?(Array) ? something.last : something).class.human_name}))
       button_to(title,
                 polymorphic_path(something),
                 :class => 'delete action',
@@ -146,7 +152,22 @@ module Sugar
       end
     end
 
-  end
+    def human(*args)
+      if args.size == 2
+        args.first.human_attribute_name(args.second.to_s)
+      else
+        args.first.human_name
+      end
+    end
 
+    def zebra
+      {:class => cycle('even', 'odd')}
+    end
+
+    def translatable(text, key = nil)
+      key ||= ".#{text.gsub(/[\s\.,-]+/, '_').downcase}"
+      translate(key, :default => text)
+    end
+  end
 end
 
