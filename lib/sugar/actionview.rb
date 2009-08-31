@@ -15,9 +15,9 @@ module Sugar
              when 'index'
                controller_name.camelize
              when 'new', 'create'
-               t("#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}")
+               "#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}"
              when 'edit', 'update'
-               t("#{t('editing', :default => 'Editing')} #{controller_name.classify.constantize.human_name}")
+               "#{t('edit', :default => 'Editing')} #{controller_name.classify.constantize.human_name}"
              else
                t("#{controller_name}.#{view_name}.title")
              end
@@ -41,7 +41,7 @@ module Sugar
     # Put submit with proper text
     def submit(form, title = nil)
       title ||= t("#{controller.controller_name}.#{view_name}.submit",
-                  :default => form.object.new_record? ? "#{t('add', :default => 'Add')} #{form.object.class.human_name}" : "#{t('save', :default => 'Save')} #{form.object.class.human_name}")
+                  :default => form.object.new_record? ? "#{t('create', :default => 'Add')} #{form.object.class.human_name}" : "#{t('update', :default => 'Save')} #{form.object.class.human_name}")
       form.submit(title)
     end
 
@@ -110,7 +110,7 @@ module Sugar
 
     def image_button_to_delete(something)
       image_to('icons/delete.png',
-               t('.delete'),
+               t('.delete', :default => 'Delete'),
                polymorphic_path(something),
                :class => 'delete action',
                :method => :delete,
@@ -119,8 +119,8 @@ module Sugar
 
     def link_to_delete(something)
       link_to(image_tag('icons/delete.png',
-                        :alt => t('.delete'),
-                        :title => t('.delete')),
+                        :alt => t('.delete', :default => 'Delete'),
+                        :title => t('.delete', :default => 'Delete')),
               polymorphic_path(something),
               :class => 'ajax action delete')
     end
@@ -128,8 +128,8 @@ module Sugar
     def default_new_link_options
       @default_new_link_options ||= {
         :image => 'icons/add.png',
-        :alt => t('.add'),
-        :title => t('.add')
+        :alt => t('.add', :default => 'Add'),
+        :title => t('.add', :default => 'Add')
       }
     end
 
