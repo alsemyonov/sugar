@@ -15,9 +15,9 @@ module Sugar
              when 'index'
                controller_name.camelize
              when 'new', 'create'
-               "#{t('new', :default => 'New')} #{controller_name.classify.constantize.human_name}"
+               "#{t('krasivotokak.sugar.new', :default => 'New')} #{controller_name.classify.constantize.human_name}"
              when 'edit', 'update'
-               "#{t('edit', :default => 'Editing')} #{controller_name.classify.constantize.human_name}"
+               "#{t('krasivotokak.sugar.edit', :default => 'Editing')} #{controller_name.classify.constantize.human_name}"
              else
                t("#{controller_name}.#{view_name}.title")
              end
@@ -41,7 +41,7 @@ module Sugar
     # Put submit with proper text
     def submit(form, title = nil)
       title ||= t("#{controller.controller_name}.#{view_name}.submit",
-                  :default => form.object.new_record? ? "#{t('create', :default => 'Add')} #{form.object.class.human_name}" : "#{t('update', :default => 'Save')} #{form.object.class.human_name}")
+                  :default => form.object.new_record? ? "#{t('krasivotokak.sugar.create', :default => 'Add')} #{form.object.class.human_name}" : "#{t('krasivotokak.sugar.update', :default => 'Save')} #{form.object.class.human_name}")
       form.submit(title)
     end
 
