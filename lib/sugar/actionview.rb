@@ -29,7 +29,7 @@ module Sugar
       @page_title = if title
                  title
                else
-                 @page_title || t("#{controller_name}.#{view_name}.title", :default => default_page_title)
+                 @page_title || t("#{controller_name}.#{view_name}.title", :default => Rails.env.production? ? default_page_title : nil)
                end
     end
 
@@ -40,8 +40,13 @@ module Sugar
 
     # Put submit with proper text
     def submit(form, title = nil)
-      title ||= t("#{controller.controller_name}.#{view_name}.submit",
-                  :default => form.object.new_record? ? "#{t('krasivotokak.sugar.create', :default => 'Add')} #{form.object.class.human_name}" : "#{t('krasivotokak.sugar.update', :default => 'Save')} #{form.object.class.human_name}")
+      title ||= t("#{form.object.class.name.tableize}.#{form.object.new_record? ? :new : :edit}.submit",
+                  :default => Rails.env.production? ?
+                     (form.object.new_record? ?
+                      "#{t('krasivotokak.sugar.create', :default => 'Add')} #{form.object.class.human_name}" :
+                      "#{t('krasivotokak.sugar.update', :default => 'Save')} #{form.object.class.human_name}") :
+                     nil
+                 )
       form.submit(title)
     end
 
