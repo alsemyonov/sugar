@@ -96,9 +96,10 @@ module Sugar
     end
 
     def link_to_edit(something)
+      text = t('.edit', :default => [:'krasivotokak.sugar.edit', 'Edit'])
       link_to(image_tag('icons/edit.png',
-                        :alt => t('.edit'),
-                        :title => t('.edit')),
+                        :alt => text,
+                        :title => text),
               edit_polymorphic_path(something),
               :class => 'ajax edit action')
     end
