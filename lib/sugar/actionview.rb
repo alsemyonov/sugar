@@ -174,6 +174,11 @@ module Sugar
       key ||= ".#{text.gsub(/[\s\.,-]+/, '_').downcase}"
       translate(key, :default => text)
     end
+
+    def body_class
+      controller_name = controller.controller_name
+      {:class => "m_#{controller_name} m_#{controller_name}-#{controller.action_name}"}
+    end
   end
 end
 
