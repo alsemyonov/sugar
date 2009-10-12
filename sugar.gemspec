@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar}
-  s.version = "0.0.31"
+  s.version = "0.0.32"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
@@ -26,6 +26,8 @@ Gem::Specification.new do |s|
      "lib/sugar.rb",
      "lib/sugar/actioncontroller.rb",
      "lib/sugar/actionview.rb",
+     "lib/sugar/actionview/forms.rb",
+     "lib/sugar/actionview/structure.rb",
      "lib/sugar/activerecord.rb",
      "lib/sugar/locales/en.yml",
      "lib/sugar/locales/ru.yml",
