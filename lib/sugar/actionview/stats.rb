@@ -11,7 +11,7 @@ module Sugar
 
         if piwik = options.delete(:piwik)
           static_includes   << "//#{piwik[:site]}/piwik.js"
-          initializers      << "var piwikTracker=Piwik.getTracker('#{piwik[:site]}/piwik.php',#{piwik[:id]});piwikTracker.trackPageView();piwikTracker.enableLinkTracking();"
+          initializers      << "var piwikTracker=Piwik.getTracker('//#{piwik[:site]}/piwik.php',#{piwik[:id]});piwikTracker.trackPageView();piwikTracker.enableLinkTracking();"
           noscript_includes << "//#{piwik[:site]}/piwik.php?idsite=#{piwik[:id]}"
         end
 
