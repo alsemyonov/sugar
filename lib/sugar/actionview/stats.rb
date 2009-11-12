@@ -35,9 +35,8 @@ module Sugar
           end
           result << javascript_include_tag(static_includes) unless static_includes.empty?
           unless initializers.empty?
-            initializers = initializers.inject('') do |pack, initializer|
-              pack << "try {#{initializer}} catch(e) {}"
-              pack
+            initializers = initializers.collect do |initializer|
+              "try {#{initializer}} catch(e) {}"
             end.join("\n")
             result << javascript_tag(initializers)
           end
