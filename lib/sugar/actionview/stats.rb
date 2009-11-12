@@ -7,14 +7,14 @@ module Sugar
         noscript_includes = []
         initializers = []
 
-        if options[:piwik]
-          static_includes << "//#{options[:piwik][:site]}/piwik.js"
-          initializers <<-END_PIWIK
-            var piwikTracker = Piwik.getTracker("#{options[:piwik][:site]}/piwik.php", #{options[:piwik][:id]});
+        if piwik = options.delete(:piwik)
+          static_includes << "//#{piwik[:site]}/piwik.js"
+          initializers = %{
+            var piwikTracker = Piwik.getTracker("#{piwik[:site]}/piwik.php", #{piwik[:id]});
             piwikTracker.trackPageView();
             piwikTracker.enableLinkTracking();
-          END_PIWIK
-          noscript_includes << %(<img src="//#{options[:piwik][:site]}/piwik.php?idsite=#{options[:piwik][:id]}" alt="" style="border:0"  />)
+          }
+          noscript_includes << %[<img src="//#{piwik[:site]}/piwik.php?idsite=#{piwik[:id]}" alt="" style="border:0"  />]
         end
 
         if options[:metrika]
@@ -29,17 +29,17 @@ module Sugar
           initializers << "var pageTracker = _gat._getTracker('#{options}'); pageTracker._trackPageview();"
         end
 
-        returning '' do |result|
+        returning('') do |result|
           unless dynamic_includes.empty?
             result << javascript_tag(dynamic_includes)
           end
           result << javascript_include_tag(static_includes) unless static_includes.empty?
           unless initializers.empty?
-            result << javascript_tag do
-              initializers.collect do |initializer|
-            "try {#{initializer}} catch(e) {}\n"
-              end
-            end
+            initializers = initializers.inject('') do |pack, initializer|
+              pack << "try {#{initializer}} catch(e) {}"
+              pack
+            end.join("\n")
+            result << javascript_tag(initializers)
           end
           unless noscript_includes.empty?
             result << content_tag(:noscript,
@@ -49,7 +49,6 @@ module Sugar
           end
         end
       end
-
     end
   end
 end
