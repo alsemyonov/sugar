@@ -1,6 +1,8 @@
 module Sugar
   module Actionview
     module Stats
+      # Set online statistics trackers
+      # @options
       def online_stats(options = {})
         static_includes = []
         dynamic_includes = ''
@@ -9,20 +11,20 @@ module Sugar
 
         if piwik = options.delete(:piwik)
           static_includes   << "//#{piwik[:site]}/piwik.js"
-          initializers      << "var piwikTracker=Piwik.getTracker('#{piwik[:site]}/piwik.php', #{piwik[:id]});piwikTracker.trackPageView();piwikTracker.enableLinkTracking();"
+          initializers      << "var piwikTracker=Piwik.getTracker('#{piwik[:site]}/piwik.php',#{piwik[:id]});piwikTracker.trackPageView();piwikTracker.enableLinkTracking();"
           noscript_includes << "//#{piwik[:site]}/piwik.php?idsite=#{piwik[:id]}"
         end
 
         if metrika = options.delete(:metrika)
           static_includes   << '//mc.yandex.ru/resource/watch.js'
-          initializers      << "var yaCounter#{metrika} = new Ya.Metrika(#{metrika});"
+          initializers      << "var yaCounter#{metrika}=new Ya.Metrika(#{metrika});"
           noscript_includes << "//mc.yandex.ru/watch/#{metrika}"
         end
 
         if analytics = options.delete(:analytics)
           dynamic_includes << 'var gaJsHost=("https:"==document.location.protocol)?"https://ssl.":"http://www.";'
-          dynamic_includes << 'document.write(unescape("%3Cscript src=\'"+gaJsHost+"google-analytics.com/ga.js"\' type=\'text/javascript\'%3E%3C/script%3E));'
-          initializers     << "var pageTracker = _gat._getTracker('#{analytics}'); pageTracker._trackPageview();"
+          dynamic_includes << 'document.write(unescape("%3Cscript src=\'"+gaJsHost+"google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3Ei"));'
+          initializers     << "var pageTracker=_gat._getTracker('#{analytics}');pageTracker._trackPageview();"
         end
 
         returning('') do |result|
