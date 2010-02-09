@@ -1,11 +1,10 @@
 module Sugar
   autoload :ActiveRecord, 'sugar/active_record'
+  autoload :ActionView, 'sugar/action_view'
   def self.locale_files
     Dir[File.join(File.dirname(__FILE__), 'sugar', 'locales', '*')]
   end
 end
-
-require 'sugar/actionview'
 
 if defined? Rails
   ActionView::Base.send :include, Sugar::Actionview if defined? ActionView

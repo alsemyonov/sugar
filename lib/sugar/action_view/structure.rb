@@ -1,5 +1,5 @@
 module Sugar
-  module Actionview
+  module ActionView
     module Structure
       VIEW_PLACEHOLDERS = {
         'create' => 'new',

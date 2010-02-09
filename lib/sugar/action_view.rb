@@ -1,12 +1,12 @@
-require 'sugar/actionview/forms'
-require 'sugar/actionview/structure'
-require 'sugar/actionview/stats'
+require 'sugar/action_view/forms'
+require 'sugar/action_view/structure'
+require 'sugar/action_view/stats'
 
 module Sugar
-  module Actionview
-    include Sugar::Actionview::Structure
-    include Sugar::Actionview::Forms
-    include Sugar::Actionview::Stats
+  module ActionView
+    include Sugar::ActionView::Structure
+    include Sugar::ActionView::Forms
+    include Sugar::ActionView::Stats
 
     def human(*args)
       if args.size == 2

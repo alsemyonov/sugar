@@ -1,5 +1,5 @@
 module Sugar
-  module Actionview
+  module ActionView
     module Stats
       # Set online statistics trackers
       # @options

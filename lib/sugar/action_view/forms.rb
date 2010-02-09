@@ -1,5 +1,5 @@
 module Sugar
-  module Actionview
+  module ActionView
     module Forms
       # Put submit with proper text
       def submit(form, title = nil)
