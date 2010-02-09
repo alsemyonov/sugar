@@ -1,5 +1,5 @@
 module Sugar
-  module Activerecord
+  module ActiveRecord
     def slug
       read_attribute(:slug) || to_s && write_attribute(:slug, to_s.parameterize) && read_attribute(:slug)
     end
