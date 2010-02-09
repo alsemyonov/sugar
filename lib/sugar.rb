@@ -9,7 +9,7 @@ module Sugar
 end
 
 if defined? Rails
-  ActionView::Base.send :include, Sugar::Actionview if defined? ActionView
-  ActionController::Base.send :include, Sugar::Actioncontroller if defined? ActionController
+  ActionView::Base.send :include, Sugar::ActionView if defined? ActionView
+  ActionController::Base.send :include, Sugar::ActionController if defined? ActionController
   I18n.load_path.unshift(*Sugar.locale_files)
 end

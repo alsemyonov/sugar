@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar}
-  s.version = "0.0.40"
+  s.version = "0.0.41"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
-  s.date = %q{2009-11-12}
+  s.date = %q{2010-02-09}
   s.email = %q{rotuka@tokak.ru}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -24,12 +24,12 @@ Gem::Specification.new do |s|
      "VERSION",
      "init.rb",
      "lib/sugar.rb",
-     "lib/sugar/actioncontroller.rb",
-     "lib/sugar/actionview.rb",
-     "lib/sugar/actionview/forms.rb",
-     "lib/sugar/actionview/stats.rb",
-     "lib/sugar/actionview/structure.rb",
-     "lib/sugar/activerecord.rb",
+     "lib/sugar/action_controller.rb",
+     "lib/sugar/action_view.rb",
+     "lib/sugar/action_view/forms.rb",
+     "lib/sugar/action_view/stats.rb",
+     "lib/sugar/action_view/structure.rb",
+     "lib/sugar/active_record.rb",
      "lib/sugar/locales/de.yml",
      "lib/sugar/locales/en.yml",
      "lib/sugar/locales/ru.yml",
