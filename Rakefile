@@ -49,4 +49,4 @@ rescue LoadError
 end
 
 desc "Bump patch version and release to github and gemcutter"
-task :bump => %w(version:bump:patch release gemcutter:release install)
+task :bump => %w(version:bump:patch git:release gemcutter:release install)

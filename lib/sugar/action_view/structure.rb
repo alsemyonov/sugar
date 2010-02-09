@@ -36,7 +36,7 @@ module Sugar
 
       def html_page_title(default = false, separator = ' | ')
         default ||= t('application.title')
-        [page_title, default].compat.join(separator)
+        [page_title, default].compact.join(separator)
       end
 
       # Build simple navigation list
