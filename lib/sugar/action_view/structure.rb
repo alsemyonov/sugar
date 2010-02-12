@@ -34,8 +34,8 @@ module Sugar
                       end
       end
 
-      def html_page_title(default = false, separator = ' | ')
-        default ||= t('application.title')
+      def head_title(default = false, separator = ' | ')
+        default ||= t('application.meta.title')
         [page_title, default].compact.join(separator)
       end
 
